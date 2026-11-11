@@ -3,10 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моє Резюме</title>
+    <title>New Year Timer 🎄</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #38bdf8;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h1 { color: #f43f5e; text-shadow: 2px 2px #ffe4e6; }
+        #timer {
+            font-size: 2rem;
+            background: #1e293b;
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Моє Резюме</h1>
-    <p>Ласкаво просимо на мій сайт-резюме!</p>
+    <h1>🎄 До Нового Року залишилось: 🎁</h1>
+    <div id="timer">Завантаження таймера...</div>
+
+    <script>
+        function updateTimer() {
+            const now = new Date();
+            const nextYear = now.getFullYear() + 1;
+            const newYear = new Date(`January 1, ${nextYear} 00:00:00`);
+            const diff = newYear - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('timer').innerText = 
+                `${days} дн. ${hours} год. ${minutes} хв. ${seconds} сек.`;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
 </html>
